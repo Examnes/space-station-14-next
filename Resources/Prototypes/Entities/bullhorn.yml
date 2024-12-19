@@ -1,0 +1,12 @@
+- type: entity
+  id: Bullhorn
+  parent: BaseItem
+  name: Громкоговоритель
+  description: С ним вас слышно лучше
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Tools/megaphone.rsi
+    state: icon
+  - type: Bullhorn

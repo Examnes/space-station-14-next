@@ -218,7 +218,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             checkRadioPrefix = false;
             message = message[1..];
         }
-		
+
         // Corvax-Next-Hushed-Start
         // This needs to happen after prefix removal to avoid bug
         if (desiredType == InGameICChatType.Speak && HasComp<HushedComponent>(source))
@@ -720,7 +720,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// </summary>
     private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
     {
-        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        foreach (var (session, data) in GetRecipients(source, (TryComp<AmplifierComponent>(source, out var modifier) ? modifier.Amplification * VoiceRange : VoiceRange)))
         {
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
